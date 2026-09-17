@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f5f3" />
+    <title>Focus — Pomodoro Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="timer-app">
+      <header class="app-header">
+        <a class="brand" href="#" aria-label="Focus timer home"><span class="brand-mark"></span>focus</a>
+        <span class="cycle-label" id="cycle-count">Session 01</span>
+      </header>
+
+      <section class="timer-panel" aria-labelledby="mode-label">
+        <div class="mode-row">
+          <span class="mode-dot" aria-hidden="true"></span>
+          <p id="mode-label" class="mode-label">Work</p>
+        </div>
+        <output id="time-display" class="time-display" aria-live="off" aria-label="30 minutes remaining">30:00</output>
+        <p class="status" id="status" aria-live="polite">Ready when you are</p>
+        <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
+      </section>
+
+      <section class="controls" aria-label="Timer controls">
+        <button id="start-pause" class="button button-primary" type="button">
+          <span class="button-icon" id="start-icon" aria-hidden="true">▶</span>
+          <span id="start-label">Start</span>
+        </button>
+        <button id="reset" class="button button-secondary" type="button">Reset</button>
+      </section>
+      <button id="stop-ringing" class="stop-ringing" type="button" hidden>Stop ringing &amp; start next session</button>
+
+      <section class="settings" aria-labelledby="settings-heading">
+        <div class="settings-heading">
+          <h1 id="settings-heading">Your rhythm</h1>
+          <span>Applies to the next session</span>
+        </div>
+        <div class="settings-grid">
+          <label class="setting-field" for="work-duration">
+            <span>Work</span>
+            <span class="input-wrap"><input id="work-duration" type="number" min="1" max="120" value="30" inputmode="numeric" /><em>min</em></span>
+          </label>
+          <label class="setting-field" for="break-duration">
+            <span>Break</span>
+            <span class="input-wrap"><input id="break-duration" type="number" min="1" max="60" value="5" inputmode="numeric" /><em>min</em></span>
+          </label>
+          <label class="sound-toggle" for="sound-toggle">
+            <span class="sound-copy"><span>Sound</span><small id="sound-label">On</small></span>
+            <input id="sound-toggle" type="checkbox" checked />
+            <span class="toggle-track" aria-hidden="true"><span></span></span>
+          </label>
+        </div>
+      </section>
+
+      <p class="footer-note">Work, pause, reset. Repeat.</p>
+    </main>
+    <div id="reset-dialog" class="dialog-backdrop" hidden>
+      <section class="reset-dialog" role="dialog" aria-modal="true" aria-labelledby="reset-title">
+        <p class="dialog-eyebrow">Reset timer</p>
+        <h2 id="reset-title">What would you like to start with?</h2>
+        <div class="dialog-actions">
+          <button class="button button-primary" type="button" data-reset-mode="work">Start with Work</button>
+          <button class="button button-secondary" type="button" data-reset-mode="break">Start with Break</button>
+        </div>
+        <button id="cancel-reset" class="dialog-cancel" type="button">Cancel</button>
+      </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
